@@ -6,15 +6,21 @@ import {
   updateContact,
   deleteContact,
 } from '../services/contacts.js';
+import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 
-export async function getContactsController(req, res) {
-  const contacts = await getAllContacts();
-  res.status(200).json({
+export async function getContactsController (req, res) {
+  const { page, perPage } = parsePaginationParams(req.query);
+  const contacts = await getAllContacts({
+    page,
+    perPage,
+  });
+
+  res.json({
     status: 200,
-    message: 'Successfully found contacts',
+    message: 'Successfully found contacts!',
     data: contacts,
   });
-}
+};
 
 export async function getContactIdController(req, res) {
   const { contactId } = req.params;
