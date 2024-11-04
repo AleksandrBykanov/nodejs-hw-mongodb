@@ -11,10 +11,10 @@ export const getAllContacts = async ({
  }) => {
   const limit = perPage;
   const skip = (page - 1) * perPage;
+  const contactsQuery = ContactsCollection.find();
 
   contactsQuery.where('userId').equals(userId);
   
-  const contactsQuery = ContactsCollection.find();
   const contactsCount = await ContactsCollection.find()
     .merge(contactsQuery)
     .countDocuments();
@@ -33,15 +33,13 @@ export const getAllContacts = async ({
   };
 };
 
-export const getContactById = async (contactId, userId,) => {
-  const contact = await ContactsCollection.findById(contactId, userId,);
+export const getContactById = async (contactId, userId) => {
+  const contact = await ContactsCollection.findOne({ _id: contactId, userId });
   return contact;
 };
 
-export const createContact = async (payload) => {
-  console.log(payload);
-  
-  const contact = await ContactsCollection.create(payload);
+export const createContact = async (payload, userId) => {
+  const contact = await ContactsCollection.create({ ...payload, userId });
   return contact;
 };
 

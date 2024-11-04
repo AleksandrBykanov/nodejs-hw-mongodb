@@ -67,7 +67,7 @@ export async function updateContactContoller (req, res) {
   });
 };
 
-export async function deleteContactController(req, res) {
+export async function deleteContactController (req, res) {
   const { contactId } = req.params;
   const contact = await deleteContact(contactId, req.user._id);
 
