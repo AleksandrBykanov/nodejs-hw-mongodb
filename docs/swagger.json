@@ -233,6 +233,7 @@
                   "photo": {
                     "description": "Contact's photo",
                     "type": "string",
+                    "format": "binary",
                     "example": "https://res.cloudinary.com/uqwgdu/image/upload/image.png"
                   }
                 }
@@ -433,6 +434,7 @@
                   "photo": {
                     "description": "Contact's avatar",
                     "type": "string",
+                    "format": "binary",
                     "example": "https://res.cloudinary.com/uqwgdu/image/upload/image.png"
                   }
                 }
